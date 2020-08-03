@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 1
+  ordered_date: 2020-08-03 09:39:41
+  order_status: 1
+  ordered_zip_code: 1
+  ordered_address: MyString
+  ordered_name: MyString
+  total_price: 1
+  ordered_postage: 1
+  order_method: MyString
+
+two:
+  customer_id: 1
+  ordered_date: 2020-08-03 09:39:41
+  order_status: 1
+  ordered_zip_code: 1
+  ordered_address: MyString
+  ordered_name: MyString
+  total_price: 1
+  ordered_postage: 1
+  order_method: MyString
