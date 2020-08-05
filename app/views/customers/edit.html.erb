@@ -1,2 +1,48 @@
-<h1>Customers#edit</h1>
+<h1>登録情報編集</h1>
 <p>Find me in app/views/customers/edit.html.erb</p>
+
+<!-- 登録情報編集フォーム-->
+<%= form_for(@customer) do |f| %>
+	<!-- 名前　-->
+	<div class="form-group">
+		<p>名前</p>
+	    <label>(姓)</label>
+	    <%= f.text_field :last_name_kanji, class: "form-control" %>
+	</div>
+	    <label>(名)</label>
+	    <%= f.text_area :first_name_kanji, class: "form-control" %>
+	<!-- フリガナ　-->
+	<div class="form-group">
+		<p>フリガナ</p>
+	    <label>(セイ)</label>
+	    <%= f.text_area :last_name_kana, class: "form-control" %>
+	</div>
+	<!-- メールアドレス　-->
+	<div class="form-group">
+		<p>メールアドレス</p>
+	    <label>(メイ)</label>
+	    <%= f.text_field :first_name_kana, class: "form-control" %>
+	</div>
+	<!-- 郵便番号（ハイフンなし）-->
+	<div class="form-group">
+		<p>郵便番号（ハイフンなし）</p>
+	    <%= f.text_field :zip_code, class: "form-control" %>
+	</div>
+	<!-- 住所　-->
+	<div class="form-group">
+	    <p>住所</p>      
+	    <%= f.text_field :address, class: "form-control" %>
+	</div>
+	<!-- 電話番号（ハイフンなし）-->
+	<div class="form-group">
+	    <p>電話番号（ハイフンなし）</p>       
+	    <%= f.text_field :phone_number, class: "form-control" %>
+	</div>
+
+<!-- 編集内容保存ボタン　-->           
+<%= f.submit '編集内容を保存する', class: 'btn btn-primary btn-lg btn-block'%>
+<% end %>
+
+<!-- 退会ボタン　-->
+<%= link_to '退会する', customer_resign_customers_page %> 
+
