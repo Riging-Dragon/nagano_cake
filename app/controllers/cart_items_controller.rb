@@ -1,6 +1,7 @@
 class CartItemsController < ApplicationController
   def index
     @customer = Customer.find(current_customer[:id])
+    @total_price = calculate(current_customer)
   end
 
   def create
@@ -11,9 +12,19 @@ class CartItemsController < ApplicationController
   end
 
   def update
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update(cart_item_params)
+    redirect_to cart_items_path
   end
 
   def destroy
+    cart_item = CartItem.find(params[:id])
+    if cart_item.destroy
+      flash[:notice] = "カート内の商品を削除しました。"
+      redirect_to cart_items_path
+    else
+      render action: :index
+    end
   end
 
   def destroy_all
