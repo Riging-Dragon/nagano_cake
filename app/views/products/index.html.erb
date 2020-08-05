@@ -1,17 +1,11 @@
 <div class="container">
-	<!--左側ジャンル検索画面-->
 	<div class="row">
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>ジャンル一覧</th>
-				</tr>
-			</thead>
-			<tbody>
-				<td>
-				<% @genres.each do |genre| %>
-			</td>
-			<% end %>
-		</tbody>
-	</table>
+		<tr>
+      <td>
+        <%= link_to "全商品を表示", products_path, class:"ec-genre-list-item" %>
+      </td>
+      
 	<h3>商品一覧</h3>
+</div>
+</div>
+

@@ -1,19 +1,6 @@
 <div class="container">
-	<!--左側ジャンル検索画面-->
 	<div class="row">
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>ジャンル検索</th>
-				</tr>
-			</thead>
-			<tbody>
-				<td>
-				<% @genres.each do |genre| %>
-			</td>
-			<% end %>
-		</tbody>
-	   </table>
+	<% render　partial:='products/genre_serch' locals: ,gener: @gener %>
 	<!--右側商品詳細ページ-->
 <div class="col-md-3">
 		<% @products.each do |product| %>
