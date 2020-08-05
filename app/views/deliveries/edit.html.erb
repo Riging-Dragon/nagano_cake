@@ -1,2 +1,50 @@
-<h1>配送先編集</h1>
-
+<div class="container">
+	<div class="row">
+		<div class="delivery-edit">
+			<h2 class="delivery-edit-title">配送先編集</h2>
+				<% if flash[:notice] %>
+				<p class="success-message"><%= flash[:notice] %></p>
+				<% end %>
+			<div class="edit-delivery-section">
+				<%= form_for(@delivery) do |f| %>
+					<div class="edit-delivery-table row">
+						<table class="table">
+							<tbody>
+								<!-- 郵便番号の編集 -->
+								<tr class="row">
+									<th>郵便番号(ハイフンなし)</th>
+									<td>
+										<div class="col-xs-4">
+											<%= f.text_field :zip_code, class:"form-control", placeholder: "4545555" %>
+										</div>
+									</td>
+								</tr>
+								<!-- 住所 -->
+								<tr class="row">
+									<th>住所</th>
+									<td>
+										<div class="col-xs-10">
+											<%= f.text_field :address, class:"form-control", placeholder: "" %>
+										</div>
+									</td>
+								</tr>
+								<!-- 宛名 -->
+								<tr class="row">
+									<th>宛名</th>
+									<td>
+										<div class="col-xs-5">
+											<%= f.text_field :name, class:"form-control", placeholder: "" %>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				<% end %>
+			</div>
+			<div class="create-delivery-btn-wrap row">
+				<%= f.submit '編集する', class:"create-delivery-btn btn btn-primary" %>
+			</div>
+		</div>
+	</div>
+</div>
