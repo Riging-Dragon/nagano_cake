@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   #管理者側
-  namespace :admin do
+  namespace :admins do
   	root 'homes#top'
   	resources :products, except: [:destroy]
   	resources :genres, only: [:index, :edit, :create, :update]
@@ -16,13 +16,15 @@ Rails.application.routes.draw do
   root 'homes#top'
   get 'homes/about' => 'homes#about', as: 'about'
   get 'orders' => 'orders#top', as: 'orders'
-  get 'customers/resign_page' => 'customers#resign_page', as: 'resign_pgae'
+  get 'customers/resign_page' => 'customers#resign_page', as: 'resign_page'
+  #customers/registrations#editで/customers/edit(.:format)を使用しているため、URLを個別指定。
+  get 'customers/my_page' => 'customers#edit', as: 'my_page'
   patch 'customers/resign' => 'customers#resign', as: 'resign'
 
   resources :products, only: [:index, :show]
   resources :cart_items, except: [:show, :edit, :new]
   resource :orders, only: [:new, :create] 
-  resource :customers, only: [:show, :edit, :update] 
+  resource :customers, only: [:show,  :update] 
   resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
   resources :order_details, only: [:index, :show]
 end
