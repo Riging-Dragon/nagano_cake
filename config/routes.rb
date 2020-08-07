@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admins
-  #論理削除のため、コード追加
-  devise_for :customers, :controllers => { :registrations => 'customers/registrations' }
+  devise_for :customers
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   #管理者側

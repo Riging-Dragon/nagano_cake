@@ -1,34 +1,51 @@
 <div class="container">
-	<div class="row">
-	<% render　partial:='products/genre_serch' locals: ,gener: @gener %>
-	<!--右側商品詳細ページ-->
-<div class="col-md-3">
-		<% @products.each do |product| %>
-<div class="col-xs-3 each_item">
-		<%= link_to products_path(product) do %>
-		<%= attachment_image_tag product, :image, style:"width:100%; bottom: 45px;" %>
-			<% end %>
-		<%= product.name %>
-		<%= product.price %>円<br>
-		<%= product.introduction%>
-		<h4><%= addTax(@product.price)%>
-		<span>円(税込価格)</span>
-		</h4>
-			</div>
-			<% end %>
-		    </div>
-	        </div>
-		<% if user_signed_in? %>
+ <!-- 左側ジャンル検索画面 -->
+ <div class="row">
+  <div class="col-md-3">
+    <table class="table table-bordered">
+     <thead>
+       <tr>
+         <th>ジャンル検索</th>
+       </tr>
+     </thead>
+    　 <tbody>
+         <% @genres.each do |genre| %>
+           <td>
+              <%= link_to genre.genre_name, products_top_path(genre_id: genre.id) %>
+           </td>
+       </tbody>
+         <% end %>
+    </table>
+  </div>
+   <!-- 右側商品詳細 -->
+   <!--カート送信ボタンのコード -->
+  <div class="col-md-3">
+     <div>
+      <%= attachment_image_tag @product, :image, format:'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size: '200x200' %>
+     </div>
+  </div>
+  <div class="col-md-6">
+    <dl>
+     <dt>
+       <h2 class="text-center"><%= @product.product_name %></h2>
+     </dt>
+    </dl>
+    <ul class="list-unstyled">
+      <li><%= @product.product_description %></li>
+      <li>
+        <h3><%= @product.tax_excluded %>円</h3>
+      </li>
+     <% if user_signed_in? %>
      <!-- ログインしていたらカートボタン表示 -->
-      <%= form_for(@cart_item, url:cart_item_path) do |f| %>
-       <%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10] %>
+      <%= form_for( Cart.new(product_id: @product.id)) do|f|  %>
+      <li>
+        <%= f.select :product_number, [*1..100] ,class:"form-control" %>
         <%= f.hidden_field :product_id %>
-        <% if @product.sales_status == false %>
-      <%= f.submit '売り切れ', class: "btn btn-new-register btn-lg", disabled: true %>
-      <% else %>
         <%= f.submit "カートに入れる", class: "btn btn-primary" %>
         <% end %>
-        <% end %>
-    </div>
-
-
+      </li>
+    </ul>
+    <% end %>
+  </div>
+ </div>
+</div>
