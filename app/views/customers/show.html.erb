@@ -1,15 +1,16 @@
 <h1>マイページ</h1>
 <p>登録情報</p>
-<% link_to "編集する", edit_customers_path %>
-<% link_to　"パスワードを変更する", edit_customer_password_path %>
+<%= link_to '編集する', my_page_path %>
+<!-- 下記、link先は実装時に確認すること -->
+<%= link_to 'パスワードを変更する', my_page_path %>
 <table>
 	<tr>
 		<td>氏名</td>
-		<td><%= current_customer.first_name_kanji%><%= current.customer.last_name_kanji%></td>
+		<td><%= current_customer.first_name_kanji %><%= current_customer.last_name_kanji %></td>
 	</tr>
 	<tr>
 		<td>カナ</td>
-		<td><%= current_customer.first_name_kana%><%= current.customer.last_name_kana%></td>
+		<td><%= current_customer.first_name_kana %><%= current_customer.last_name_kana %></td>
 	</tr>
 	<tr>
 		<td>郵便番号</td>
@@ -28,6 +29,6 @@
 		<td><%= current_customer.email %></td>
 	</tr>
 </table>
-<% link_to "一覧を見る", deliveries_path %>
-<% link_to "一覧を見る", order_details_path %>
+<%= link_to '一覧を見る', deliveries_path %>
+<%= link_to '一覧を見る', order_details_path %>
 

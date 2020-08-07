@@ -20,9 +20,9 @@ class CustomersController < ApplicationController
   end
 
   def resign
-  	@user = current_user
+  	@customer = current_customer
     #is_enabledのdefault値はtrueとする。
-    @user.update(is_enabled: false)
+    @customer.update(is_enabled: false)
     ##ログアウト
     reset_session
     flash[:notice] = "ありがとうございました。引き続き長野CAKEをよろしくお願いいたします。"

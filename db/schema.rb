@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_04_092057) do
+ActiveRecord::Schema.define(version: 2020_08_07_023417) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2020_08_04_092057) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_enabled"
+    t.boolean "is_enabled", default: true
     t.string "last_name_kanji"
     t.string "first_name_kanji"
     t.string "last_name_kana"
