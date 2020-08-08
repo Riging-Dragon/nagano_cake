@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admins do
+    get 'orders/index'
+    get 'orders/show'
+  end
   devise_for :admins
   devise_for :customers
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -9,7 +13,7 @@ Rails.application.routes.draw do
   	resources :products, except: [:destroy]
   	resources :genres, only: [:index, :edit, :create, :update]
   	resources :customers, only: [:index, :show, :edit, :update]
-  	resources :order_details , only: [:index, :show]
+  	resources :orders , only: [:index, :show]
   end
   #顧客側
   root 'homes#top'
@@ -21,7 +25,7 @@ Rails.application.routes.draw do
   #customers/registrations#editで/customers/edit(.:format)を使用しているため、URLを個別指定。
   get 'customers/my_page' => 'customers#edit', as: 'my_page'
   patch 'customers/resign' => 'customers#resign', as: 'resign'
-   delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_all'
+  delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_all'
 
   resources :products, only: [:index, :show]
   resources :cart_items, except: [:show, :edit, :new]
