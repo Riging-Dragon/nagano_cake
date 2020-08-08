@@ -1,0 +1,22 @@
+<h1>注文履歴一覧</h1>
+<table>
+	<tr>
+		<th>購入日時</th>
+		<th>購入者</th>
+		<th>注文個数</th>
+		<th>注文ステータス</th>
+	</tr>
+    <!--前注文詳細の一覧-->
+	<% @orders.each do |f| %>
+    <tr>
+    	<td><%= f.ordered_date %></td>
+    	<td><%= f.ordered_name %></td>
+    	<!--orderに紐づいたorder_detailの注文個数を合計する処理が必要-->
+    	<td><%= %></td>
+    	<!--注文ステータス-->
+    	<td><%= %></td>
+    </tr>
+    <% end %>
+</table>
+
+<!--kaminari導入後にpagnateが必要-->

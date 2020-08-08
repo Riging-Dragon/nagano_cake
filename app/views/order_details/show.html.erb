@@ -1,2 +1,58 @@
-<h1>OrderDetails#show</h1>
-<p>Find me in app/views/order_details/show.html.erb</p>
+<h1>注文履歴詳細</h1>
+<h2>>注文情報</h2>
+<table>
+	<tr>
+		<th>注文日</th>
+		<td><%= @order.ordered_date %></td>
+	</tr>
+	<tr>
+	    <th>転送先</th>
+	    <td><%= @order.ordered_zip_cod %><br>
+			<%= @order.ordered_address %><br>
+			<%= @order.ordered_name %></td>			
+	</tr>
+	<tr>
+	    <th>支払方法</th>
+	    <td><%= @order.order_method %></td>			
+	</tr>
+	<!--注文ステータスの設定が必要-->
+	<tr>
+	    <th>ステータス</th>
+	    <td></td>			
+	</tr>
+</table>
+    <!--配送料についてすり合わせが必要-->
+<h2>請求情報</h2>
+<table>
+	<tr>
+		<th>商品合計</th>
+		<td></td>
+	</tr>
+	<tr>
+		<th>配送料</th>
+		<td></td>
+	</tr>
+	<tr>
+		<th>ご請求額</th>
+		<td></td>
+	</tr>
+</table>
+<h2>注文内容</h2>
+<table>
+	<tr>
+		<th>商品</th>
+		<th>単価（税込）</th>
+		<th>個数</th>
+		<th>小計</th>
+	</tr>
+	<!--コントローラーに変数の設定が必要-->
+	<% @order_detail.each do |detail| %>
+	<tr>
+		<th><%= detail.product.name%></th>
+		<th><%= detils.ordered_price %></th>
+		<th><%= detils.ordered_item_count %></th>
+	<!--小計はスキーマには設定がないため、定義が必要-->
+		<th><%= %></th>
+	</tr>
+</table>
+

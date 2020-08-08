@@ -1,2 +1,28 @@
-<h1>OrderDetails#index</h1>
-<p>Find me in app/views/order_details/index.html.erb</p>
+<h1>注文履歴一覧</h1>
+
+<table>
+	<tr>
+		<th>注文日</th>
+		<th>配送先</th>
+		<th>注文商品</th>
+		<th>支払金額</th>
+		<th>ステータス</th>
+		<th>注文詳細</th>
+	</tr>
+	<% @order.each do |f| %>
+	<tr>
+		<td><%= @order.ordered_date %></td>
+		<td><%= @order.ordered_zip_cod %><br>
+			<%= @order.ordered_address %><br>
+			<%= @order.ordered_name %>
+		</td>
+		<td><%= @order.products.name %></td>
+		<!--total_priceとordered_postageを定義する必要あり-->
+		<td><%= @order.total_price %></td>
+		<!--注文ステータスの定義が必要-->
+		<td><%= @order. %></td>
+		<!--resourcesでルートをひき、idを渡す必要があるのでは？-->
+		<td><%= link_to"表示する", order_detail_path, class: 'btn btn-danger' %></td>
+	</tr>
+	<% end %>
+</table>

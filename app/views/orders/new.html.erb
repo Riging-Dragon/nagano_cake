@@ -33,7 +33,7 @@
 				<%= f.radio_button :add, 2 %>
 				登録済住所から選択
 			</label>
-			<%= f.collection_select :ordered_address, @customer.deliveries, :id, :delivery %>
+			<%= f.collection_select :ordered_address, @ods, :id, :delivery %>
 　　　　　</div>
 　　　　　<!--　新規住所　-->
         <div class="new address">
@@ -41,18 +41,18 @@
 				<%= f.radio_button :add, 3 %>
 				新しいお届け先
 			</label>
-			<%= f.fields_for :deliveries do |d| %>
+			<%= f.fields_for :new_address do |na| %>
 				<label>
 					郵便番号
-					<%= d.text_field :zip_code, class: 'form-control' %>
+					<%= na.text_field :zip_code, class: 'form-control' %>
 				</label>
 				<label>
 					住所
-					<%= d.text_field :delivery_address, class: 'form-control' %>
+					<%= na.text_field :delivery_address, class: 'form-control' %>
 				</label>
 				<label>
 					宛名
-					<%= d.text_field :delivery_name, class: 'form-control' %>
+					<%= na.text_field :delivery_name, class: 'form-control' %>
 				</label>
 		    <% end %>
 		</div>
