@@ -1,7 +1,7 @@
 <h1>登録情報編集</h1>
 
 <!-- 登録情報編集フォーム-->
-<%= form_for(@customer) do |f| %>
+<%= form_for(@customer, url:customers_path) do |f| %>
 	<!-- 名前　-->
 	<div class="form-group">
 		<p>名前</p>

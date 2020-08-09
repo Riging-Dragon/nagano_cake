@@ -1,11 +1,11 @@
 
-
+<div class="container">
  <% if customer_signed_in? %>
 
-  <div class="customer_name">
+  <span class="u h7 text-white strong">
     ようこそ、<%= current_customer.last_name_kanji %>
     <%= current_customer.first_name_kanji %>さん！
-  </div>
+  </span>
 
     <ul class="nav navbar-nav navbar-right">
       <li>
@@ -20,9 +20,10 @@
 	  <li>
 	    <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %>
 	  </li>
-
+    </ul>
 	 <% else %> 
 
+    <ul class="nav navbar-nav navbar-right">
 	  <li>
 	    <%= link_to "About",about_path %>
 	  </li>
@@ -37,3 +38,4 @@
 	  </li>
 	  <% end %>
 	</ul>
+</div>
