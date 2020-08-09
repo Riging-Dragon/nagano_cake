@@ -9,19 +9,20 @@
 		<th>ステータス</th>
 		<th>注文詳細</th>
 	</tr>
-	<% @order.each do |f| %>
+	<% @orders.each do |order| %>
 	<tr>
-		<td><%= @order.ordered_date %></td>
-		<td><%= @order.ordered_zip_cod %><br>
-			<%= @order.ordered_address %><br>
-			<%= @order.ordered_name %>
+		<td>
+			<%= order.ordered_date %>
 		</td>
-		<td><%= @order.products.name %></td>
+		<td>
+			<%= order.ordered_zip_cod %><br>
+			<%= order.ordered_address %><br>
+			<%= order.ordered_name %>
+		</td>
+		<td><%= order.products.name %></td>
 		<!--total_priceとordered_postageを定義する必要あり-->
-		<td><%= @order.total_price %></td>
-		<!--注文ステータスの定義が必要-->
-		<td><%= @order. %></td>
-		<!--resourcesでルートをひき、idを渡す必要があるのでは？-->
+		<td><%= order.total_price %></td>
+		<td><%= order.production_status %></td>	
 		<td><%= link_to"表示する", order_detail_path, class: 'btn btn-danger' %></td>
 	</tr>
 	<% end %>

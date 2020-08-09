@@ -13,14 +13,14 @@ Rails.application.routes.draw do
   	resources :products, except: [:destroy]
   	resources :genres, only: [:index, :edit, :create, :update]
   	resources :customers, only: [:index, :show, :edit, :update]
-  	resources :orders , only: [:index, :show]
+  	resources :orders , only: [:index, :show, :update]
   end
   #顧客側
   root 'homes#top'
   get 'homes/about' => 'homes#about', as: 'about'
   get 'orders' => 'orders#top', as: 'orders'
   #アプリケーション詳細設計に追加して、注文確認viewを追加
-  get 'orders/confirm' => 'orders#confirm', as: 'confirm'
+  get 'orders/:id/confirm' => 'orders#confirm', as: 'confirm'
   get 'customers/resign_page' => 'customers#resign_page', as: 'resign_page'
   #customers/registrations#editで/customers/edit(.:format)を使用しているため、URLを個別指定。
   get 'customers/my_page' => 'customers#edit', as: 'my_page'
@@ -36,7 +36,9 @@ Rails.application.routes.draw do
 end
 
 =begin
-     Prefix Verb   URI Pattern                                                                              Controller#Action
+ Prefix Verb   URI Pattern                                                                              Controller#Action
+         admins_orders_index GET    /admins/orders/index(.:format)                                                           admins/orders#index
+          admins_orders_show GET    /admins/orders/show(.:format)                                                            admins/orders#show
            new_admin_session GET    /admins/sign_in(.:format)                                                                devise/sessions#new
                admin_session POST   /admins/sign_in(.:format)                                                                devise/sessions#create
        destroy_admin_session DELETE /admins/sign_out(.:format)                                                               devise/sessions#destroy
@@ -60,38 +62,43 @@ end
            customer_password PATCH  /customers/password(.:format)                                                            devise/passwords#update
                              PUT    /customers/password(.:format)                                                            devise/passwords#update
                              POST   /customers/password(.:format)                                                            devise/passwords#create
-cancel_customer_registration GET    /customers/cancel(.:format)                                                              customers/registrations#cancel
-   new_customer_registration GET    /customers/sign_up(.:format)                                                             customers/registrations#new
-  edit_customer_registration GET    /customers/edit(.:format)                                                                customers/registrations#edit
-       customer_registration PATCH  /customers(.:format)                                                                     customers/registrations#update
-                             PUT    /customers(.:format)                                                                     customers/registrations#update
-                             DELETE /customers(.:format)                                                                     customers/registrations#destroy
-                             POST   /customers(.:format)                                                                     customers/registrations#create
-                  admin_root GET    /admin(.:format)                                                                         admin/homes#top
-              admin_products GET    /admin/products(.:format)                                                                admin/products#index
-                             POST   /admin/products(.:format)                                                                admin/products#create
-           new_admin_product GET    /admin/products/new(.:format)                                                            admin/products#new
-          edit_admin_product GET    /admin/products/:id/edit(.:format)                                                       admin/products#edit
-               admin_product GET    /admin/products/:id(.:format)                                                            admin/products#show
-                             PATCH  /admin/products/:id(.:format)                                                            admin/products#update
-                             PUT    /admin/products/:id(.:format)                                                            admin/products#update
-                admin_genres GET    /admin/genres(.:format)                                                                  admin/genres#index
-                             POST   /admin/genres(.:format)                                                                  admin/genres#create
-            edit_admin_genre GET    /admin/genres/:id/edit(.:format)                                                         admin/genres#edit
-                 admin_genre PATCH  /admin/genres/:id(.:format)                                                              admin/genres#update
-                             PUT    /admin/genres/:id(.:format)                                                              admin/genres#update
-             admin_customers GET    /admin/customers(.:format)                                                               admin/customers#index
-         edit_admin_customer GET    /admin/customers/:id/edit(.:format)                                                      admin/customers#edit
-              admin_customer GET    /admin/customers/:id(.:format)                                                           admin/customers#show
-                             PATCH  /admin/customers/:id(.:format)                                                           admin/customers#update
-                             PUT    /admin/customers/:id(.:format)                                                           admin/customers#update
-         admin_order_details GET    /admin/order_details(.:format)                                                           admin/order_details#index
-          admin_order_detail GET    /admin/order_details/:id(.:format)                                                       admin/order_details#show
+cancel_customer_registration GET    /customers/cancel(.:format)                                                              devise/registrations#cancel
+   new_customer_registration GET    /customers/sign_up(.:format)                                                             devise/registrations#new
+  edit_customer_registration GET    /customers/edit(.:format)                                                                devise/registrations#edit
+       customer_registration PATCH  /customers(.:format)                                                                     devise/registrations#update
+                             PUT    /customers(.:format)                                                                     devise/registrations#update
+                             DELETE /customers(.:format)                                                                     devise/registrations#destroy
+                             POST   /customers(.:format)                                                                     devise/registrations#create
+                 admins_root GET    /admins(.:format)                                                                        admins/homes#top
+             admins_products GET    /admins/products(.:format)                                                               admins/products#index
+                             POST   /admins/products(.:format)                                                               admins/products#create
+          new_admins_product GET    /admins/products/new(.:format)                                                           admins/products#new
+         edit_admins_product GET    /admins/products/:id/edit(.:format)                                                      admins/products#edit
+              admins_product GET    /admins/products/:id(.:format)                                                           admins/products#show
+                             PATCH  /admins/products/:id(.:format)                                                           admins/products#update
+                             PUT    /admins/products/:id(.:format)                                                           admins/products#update
+               admins_genres GET    /admins/genres(.:format)                                                                 admins/genres#index
+                             POST   /admins/genres(.:format)                                                                 admins/genres#create
+           edit_admins_genre GET    /admins/genres/:id/edit(.:format)                                                        admins/genres#edit
+                admins_genre PATCH  /admins/genres/:id(.:format)                                                             admins/genres#update
+                             PUT    /admins/genres/:id(.:format)                                                             admins/genres#update
+            admins_customers GET    /admins/customers(.:format)                                                              admins/customers#index
+        edit_admins_customer GET    /admins/customers/:id/edit(.:format)                                                     admins/customers#edit
+             admins_customer GET    /admins/customers/:id(.:format)                                                          admins/customers#show
+                             PATCH  /admins/customers/:id(.:format)                                                          admins/customers#update
+                             PUT    /admins/customers/:id(.:format)                                                          admins/customers#update
+               admins_orders GET    /admins/orders(.:format)                                                                 admins/orders#index
+                admins_order GET    /admins/orders/:id(.:format)                                                             admins/orders#show
+                             PATCH  /admins/orders/:id(.:format)                                                             admins/orders#update
+                             PUT    /admins/orders/:id(.:format)                                                             admins/orders#update
                         root GET    /                                                                                        homes#top
                        about GET    /homes/about(.:format)                                                                   homes#about
                       orders GET    /orders(.:format)                                                                        orders#top
-                 resign_pgae GET    /customers/resign_page(.:format)                                                         customers#resign_page
+                     confirm GET    /orders/:id/confirm(.:format)                                                            orders#confirm
+                 resign_page GET    /customers/resign_page(.:format)                                                         customers#resign_page
+                     my_page GET    /customers/my_page(.:format)                                                             customers#edit
                       resign PATCH  /customers/resign(.:format)                                                              customers#resign
+                 destroy_all DELETE /cart_items(.:format)                                                                    cart_items#destroy_all
                     products GET    /products(.:format)                                                                      products#index
                      product GET    /products/:id(.:format)                                                                  products#show
                   cart_items GET    /cart_items(.:format)                                                                    cart_items#index
@@ -101,7 +108,6 @@ cancel_customer_registration GET    /customers/cancel(.:format)                 
                              DELETE /cart_items/:id(.:format)                                                                cart_items#destroy
                   new_orders GET    /orders/new(.:format)                                                                    orders#new
                              POST   /orders(.:format)                                                                        orders#create
-              edit_customers GET    /customers/edit(.:format)                                                                customers#edit
                    customers GET    /customers(.:format)                                                                     customers#show
                              PATCH  /customers(.:format)                                                                     customers#update
                              PUT    /customers(.:format)                                                                     customers#update
@@ -113,6 +119,7 @@ cancel_customer_registration GET    /customers/cancel(.:format)                 
                              DELETE /deliveries/:id(.:format)                                                                deliveries#destroy
                order_details GET    /order_details(.:format)                                                                 order_details#index
                 order_detail GET    /order_details/:id(.:format)                                                             order_details#show
+                  refile_app        /attachments                                                                             #<Refile::App app_file="/home/vagrant/.rbenv/versions/2.5.7/lib/ruby/gems/2.5.0/bundler/gems/refile-46b4178654e6/lib/refile/app.rb">
           rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
    rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
           rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
