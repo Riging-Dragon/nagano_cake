@@ -9,14 +9,14 @@ class DeliveriesController < ApplicationController
     @delivery.customer_id = current_customer.id
     if @delivery.save
       flash[:notice] = "配送先を登録しました"
-      redirect_to dekiveries_path
+      redirect_to deliveries_path
     else
       render action: :index
     end
   end
 
   def edit
-    @delivery_adress = Delivery.find(params[:id])
+    @delivery = Delivery.find(params[:id])
   end
 
   def update
@@ -38,6 +38,6 @@ class DeliveriesController < ApplicationController
 
   private
   def delivery_params
-    params.require(:delivery).permit(:name, :zip_code, :address)
+    params.require(:delivery).permit(:delivery_name, :delivery_zip_code, :delivery_address)
   end
 end

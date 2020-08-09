@@ -1,7 +1,7 @@
 <div class="container">
 	<h2 class="admin-customers-edit-title">会員情報編集</h2>
 
-<%= form_for([:admin, @customer], html: { class: "form-inline"}) do |f| %>
+<%= form_for([:admins, @customer], html: { class: "form-inline"}) do |f| %>
 	<% if @customer.errors.any? %>
 		<div id="error_explanation">
 		<h3><%= @customer.errors.count %> errors prohibited this obj from being saved:</h3>
