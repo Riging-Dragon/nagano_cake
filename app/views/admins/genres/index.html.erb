@@ -1,2 +1,44 @@
-<h1>Admin::Genres#index</h1>
-<p>Find me in app/views/admin/genres/index.html.erb</p>
+<div class="container">
+ <h1>ジャンル一覧・追加</h1>
+    <%= form_for @genre, :url => { :controller => :genres, :action => :create,method: :post } do |f| %>
+      <% if @genre.errors.any? %>
+        <div id="error_explanation" class="alert alert-danger">
+          <h3><%= @genre.errors.count %>error prohibited this obj from being saved:</h3>
+          <ul>
+            <% @genre.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <h3>
+        <%= f.label :ジャンル %><br>
+        <%= f.text_field :category %>
+        <%= f.submit '追加', class: "btn btn-primary" %>
+      </h3>
+   <% end %>
+   <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @genres.each do |p| %>
+       <tr>
+        <td><%= p.category %></td>
+        <td><%= link_to '編集する', edit_admins_genre_path(p.id), class: "btn btn-success" %></td>
+          <% if p.deleted_at.nil? %>
+            <td>有効</td>
+          <% else %>
+            <td>無効</td>
+          <% end %>
+        </td>
+       </tr>
+      <% end %>
+    </tbody>
+   </table>
+  </div>
+</div>

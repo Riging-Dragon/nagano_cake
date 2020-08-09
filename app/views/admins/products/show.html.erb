@@ -1,2 +1,16 @@
-<h1>Admin::Products#show</h1>
-<p>Find me in app/views/admin/products/show.html.erb</p>
+<div class="container">
+	<div class="row">
+	<h1>商品詳細画面</h1>
+	<%= attachment_image_tag @admins_product, image, %>
+</div>
+<div class="col">
+	<h3>商品名 <%=@admins_product.name %></h3>
+	<h3>商品説明 <%=@admins_product.description %></h3>
+	<h3>ジャンル <%= @genre.genre_id %></h3>
+	<h3>税込価格（税抜き価格） <%= addTax(@admins_product.non_taxed_proce,1.1) %> (<%= @admins_product.is_capable %>) 円</h3>
+	<h3>販売ステータス <%= @admins_product.is_capable %></h3>
+	<%= link_to "編集する", edit_admins_product_path(@admins_product), data: {"turbolinks" => false},  class: "btn btn-primary pull-right" %>
+    </div>
+  </div>
+</div>
+

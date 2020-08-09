@@ -1,2 +1,33 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <p></p>
+      <thead>
+        <tr>
+        <th>ジャンル検索</th>
+          </tr>
+<%= form_tag(products_path,:method => 'get' ) do %>
+        <%= text_field_tag :search %>
+        <%= submit_tag 'Search', :name => nil %>
+        <% @genres.each do |genre| %>
+                <td><%= link_to genre.category, products_path(genre_id:genre.id) %></td>
+        <% end %>
+        <tbody>
+          <h2>商品一覧</h2>
+        </tbody>
+            <% end %>
+      </table>
+    </div>
+    <div class="col-md-9">
+        <div class="flex_test-box">
+       <!--カート送信ボタンのコード -->
+        <% @products.each do |product| %>
+            <div class="flex_test-item">
+             <%= link_to product_path(product.id) do %>
+             <% end %>
+            </div>
+        <% end %>
+        </div>
+    </div>
+  </div>
+</div>
