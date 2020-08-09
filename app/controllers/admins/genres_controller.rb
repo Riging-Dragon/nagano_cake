@@ -20,7 +20,7 @@ def create
     end
 end
 
-def update
+  def update
     @genre = Genre.find(params[:id])
     if @genre.update(genre_params)
       flash[:notice] = "you have edited genre successfully."
@@ -28,8 +28,9 @@ def update
       redirect_to admins_genres_path
     else
       render :edit
-end
-def genre_restore
+    end
+  end
+  def genre_restore
     @genre = Genre.only_deleted.find(params[:id]).restore
     redirect_to admins_genres_path
   end
@@ -39,7 +40,7 @@ def genre_restore
     @genre.destroy
     redirect_to admins_genres_path
   end
-end
+
 private
   def genre_params
     params.require(:genre).permit(:category)
