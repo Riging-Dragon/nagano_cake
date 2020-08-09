@@ -18,11 +18,11 @@
 				</tr>
 				<tr>
 					<th>氏名</th>
-					<td><%= @customer.last_name_kanji + "　" + @customer.first_name_kanji %></td>
+					<td><%= @customer.last_name_kanji %><%= @customer.first_name_kanji %></td>
 				</tr>
 				<tr>
 					<th>フリガナ</th>
-					<td><%= @customer.last_name_kana + "　" + @customer.first_name_kana %></td>
+					<td><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
 				</tr>
 				<tr>
 					<th>郵便番号</th>
@@ -42,8 +42,8 @@
 				</tr>
 			</table>
 			<div class="row">
-			<%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-success" %>
-			<%= link_to "注文履歴一覧を見る", admin_orders_path, class: "btn btn-success" %>
+			<%= link_to "編集する", edit_admins_customer_path(@customer), class: "btn btn-success" %>
+			<%= link_to "注文履歴一覧を見る", admins_orders_path, class: "btn btn-success" %>
 			</div>
 		</div>
 	</div>
