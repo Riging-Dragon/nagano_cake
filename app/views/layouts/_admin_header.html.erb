@@ -24,7 +24,7 @@
 	     <%= form_tag(products_path,:method => 'get' ) do %>
 	        <%= text_field_tag :search %>
 	        <%= submit_tag 'Search', :name => nil %>
-	        <% @genres.each do |genre| %>
+	        <% genres.each do |genre| %>
 	                <td><%= link_to genre.category, products_path(genre_id:genre.id) %></td>
 	                <% end %>
 	                <% end %>
