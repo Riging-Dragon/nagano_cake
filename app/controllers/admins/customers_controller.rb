@@ -15,10 +15,10 @@ class Admins::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
-      redirect_to admin_customer_data_path
+      redirect_to admins_customer_path
     else
       flash[:customer_updated_error] = "会員情報が正常に保存されませんでした。"
-      redirect_to edit_admin_customer_data_path(@customer)
+      redirect_to edit_admins_customer_path(@customer)
     end
   end
 
