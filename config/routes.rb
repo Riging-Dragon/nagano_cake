@@ -3,8 +3,7 @@ Rails.application.routes.draw do
     get 'orders/index'
     get 'orders/show'
   end
-  devise_for :admins
-  devise_for :customers
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   #管理者側
@@ -33,6 +32,8 @@ Rails.application.routes.draw do
   resource :customers, only: [:show,  :update] 
   resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
   resources :order_details, only: [:index, :show]
+  devise_for :admins
+  devise_for :customers
 end
 
 =begin

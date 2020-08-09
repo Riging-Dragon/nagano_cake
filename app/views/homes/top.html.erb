@@ -1,12 +1,6 @@
 <div class="container">
 	<div class="row">
 <!--左側ジャンル検索のフォーム-->
-<%= form_tag(products_path,:method => 'get' ) do %>
-        <%= text_field_tag :search %>
-        <%= submit_tag 'Search', :name => nil %>
-        <% @genres.each do |genre| %>
-                <td><%= link_to genre.category, products_path(genre_id:genre.id) %></td>
-                <% end %>
-                <% end %>
+
 <h1>ようこそ、NaganoCakeへ！</h1>
 <p>このサイトは、ケーキ販売のECサイトになります。会員でない方も商品の閲覧は出来ますが、購入には会員登録が必要になります。</p>
