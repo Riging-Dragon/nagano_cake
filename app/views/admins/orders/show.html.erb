@@ -33,14 +33,15 @@
 		<td><%= detail.product.name %></td>
 		<td><%= detail.ordered_price %></td>
 		<td><%= detail.ordered_item_count %></td>
-		<td><%= detail.ordered_price * f.ordered_item_count %></td>
+		<td><%= detail.subtotal_price %></td>
 		<!--select-button-->
 		<%= form_with model: detail, url:admins_order_path, method: :patch, local: true do |f| %>
 		<td><%= f.select :production_status, f.production_status.keys.map {|k| [k, k]} %></td>
 		<td><%=link_to '更新', admins_order(f) %></td>
 	</tr>
+	<% end %>
 </table>
 
-<div><strong>商品合計</strong><%= @order.total_sum %></div>
+<div><strong>商品合計</strong><%= @total_price %></div>
 <div><strong>送料</strong>800</div>
-<div><strong>請求金額合計</strong><%= @order.total_sum% + 800 ></div>
+<div><strong>請求金額合計</strong><%= @order.total_sum + 800 %></div>
