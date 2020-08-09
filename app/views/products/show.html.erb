@@ -7,6 +7,9 @@
        <tr>
          <th>ジャンル検索</th>
        </tr>
+       <%= form_tag(products_path,:method => 'get' ) do %>
+        <%= text_field_tag :search %>
+        <%= submit_tag 'Search', :name => nil %>
      </thead>
      <tbody>
          <% @genres.each do |genre| %>
@@ -33,7 +36,7 @@
     <ul class="list-unstyled">
       <li><%= @product.product_description %></li>
       <li>
-        <h3><%= @product.tax_excluded %>円</h3>
+        <h3><%= @order_details.ordered_price %>円</h3>
       </li>
      <% if user_signed_in? %>
      <!-- ログインしていたらカートボタン表示 -->

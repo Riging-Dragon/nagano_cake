@@ -5,13 +5,13 @@ class Admins::ProductsController < ApplicationController
   end
 
   def new
-    @admins_products = Product.new
+    @admins_product = Product.new
   end
 
   def create
-    @admins_products = Product.new(product_params)
-    if @admins_products.save
-      redirect_to admins_product_path(admins_product.id)
+    @admins_product = Product.new(product_params)
+    if @admins_product.save
+      redirect_to admins_product_path(@admins_product.id)
       flash[:notice] ='You have created product successfully.'
     else
       render :new
@@ -28,7 +28,7 @@ end
 end
 
   def show
-    @admins_products = Product.find(params[:id])
+    @admins_product = Product.find(params[:id])
     @genre = Genre.find(@admins_product.genre_id)
   end
 
@@ -36,6 +36,6 @@ end
     @admins_products = Product.find(params[:id])
   end
   def product_params
-    params.require(:product).permit(:genre_id, :image, :name, :description, :non_tax_price)
+    params.require(:product).permit(:genre_id, :name, :description, :non_taxed_price,:is_capable)
   end
 end
