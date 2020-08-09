@@ -5,7 +5,7 @@ def index
 end
 
 def edit
-    @genre = Genre.find(params[:id])
+    @genre = Genre.with_deleted.find(params[:id])
 
 end
 
@@ -29,6 +29,16 @@ def update
     else
       render :edit
 end
+def genre_restore
+    @genre = Genre.only_deleted.find(params[:id]).restore
+    redirect_to admins_genres_path
+  end
+
+  def destroy
+    @genre = Genre.with_deleted.find(params[:id])
+    @genre.destroy
+    redirect_to admins_genres_path
+  end
 end
 private
   def genre_params
