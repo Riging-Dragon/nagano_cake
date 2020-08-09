@@ -10,9 +10,16 @@
 	<%= @order.ordered_address %><br>
 	<%= @order.ordered_name %>
 </div>
-<div><strong>支払方法</strong><%= @order.order_method %></div>
-<!--注文ステータスの設定が必要-->
-<div><strong>注文ステータス</strong></div>
+<div>
+	<strong>支払方法</strong>
+	<%= @order.order_method %>
+</div>
+<!--注文ステータス変更のurl設定が必要-->
+<div>
+	<strong>注文ステータス</strong>
+	<%= form_with model:@order, url:  ,method: :patch, local: true do |f| %>
+	<%= f.select :order_status, options_for_select_from_enum %>
+</div>
 
 <table>
 	<tr>
@@ -28,9 +35,9 @@
 		<td><%= f.ordered_price %></td>
 		<td><%= f.ordered_item_count %></td>
 		<!--小計の定義が必要-->
-		<td><%=%></td>
+		<td><%= f.ordered_price * f.ordered_item_count %></td>
 		<!--製作ステータスの定義が必要-->
-		<td><%=%></td>
+		<td><%= f.production_status %></td>
 		<!--パス、コントローラーの整備が必要-->
 		<td><%=link_to '更新', %></td>
 	</tr>

@@ -1,1 +1,33 @@
-<h1>Confirm</h1>
+<h1>注文情報確認</h1>
+
+<table>
+	<tr>
+		<th>商品名</th>
+		<th>単価（税込）</th>
+		<th>数量</th>
+		<th>小計</th>
+	</tr>
+	<% @order_details.each do |f| %>
+	<tr>
+		<td><%= f.product.name %></td>
+		<td><%= f.ordered_price * 1.1 %></td>
+		<td><%= f.ordered_item_count %></td>
+		<td><%= f.ordered_price * f.ordered_item_count * 1.1 %></td>
+	</tr>
+	<% end %>
+</table>
+
+<table>
+	<tr>
+		<th>送料</th>
+		<td>800</td>
+	</tr>
+	<tr>
+		<th>商品合計</th>
+		<td></td>
+	</tr>
+	<tr>
+		<th>請求金額</th>
+		<td></td>
+	</tr>
+</table>
