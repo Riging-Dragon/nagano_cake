@@ -14,11 +14,10 @@
 	<strong>支払方法</strong>
 	<%= @order.order_method %>
 </div>
-<!--注文ステータス変更のurl設定が必要-->
 <div>
 	<strong>注文ステータス</strong>
-	<%= form_with model:@order, url:  ,method: :patch, local: true do |f| %>
-	<%= f.select :order_status, options_for_select_from_enum %>
+	<%= form_with model: @order, url: admins_order_path ,method: :patch, local: true do |f| %>
+	<%= f.select :order_status, Order.order_statuses.keys.map {|k| [k, k]} %>
 </div>
 
 <table>
@@ -29,16 +28,19 @@
 		<th>小計</th>
 		<th>製作ステータス</th>
 	</tr>
-	<% @order_details.each do |f| %>
+	<% @order_details.each do |detail| %>
 	<tr>
-		<td><%= f.product.name %></td>
-		<td><%= f.ordered_price %></td>
-		<td><%= f.ordered_item_count %></td>
-		<!--小計の定義が必要-->
-		<td><%= f.ordered_price * f.ordered_item_count %></td>
-		<!--製作ステータスの定義が必要-->
-		<td><%= f.production_status %></td>
-		<!--パス、コントローラーの整備が必要-->
-		<td><%=link_to '更新', %></td>
+		<td><%= detail.product.name %></td>
+		<td><%= detail.ordered_price %></td>
+		<td><%= detail.ordered_item_count %></td>
+		<td><%= detail.ordered_price * f.ordered_item_count %></td>
+		<!--select-button-->
+		<%= form_with model: detail, url:admins_order_path, method: :patch, local: true do |f| %>
+		<td><%= f.select :production_status, f.production_status.keys.map {|k| [k, k]} %></td>
+		<td><%=link_to '更新', admins_order(f) %></td>
 	</tr>
 </table>
+
+<div><strong>商品合計</strong><%= @order.total_sum %></div>
+<div><strong>送料</strong>800</div>
+<div><strong>請求金額合計</strong><%= @order.total_sum% + 800 ></div>
