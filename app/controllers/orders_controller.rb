@@ -6,6 +6,8 @@ class OrdersController < ApplicationController
   end
 
   def confirm
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details
   end
 
   def create
@@ -33,8 +35,12 @@ class OrdersController < ApplicationController
 	  			@order.ordered_address = params[:order][:delivery_address]
 	  			@order.ordered_name = params[:order][:delivery_name]
 	  		end
-	  		@order.save  		      			
-	  	end
+
+	  		if @order.save
+          redirect_to confirm_path(@order)
+        else
+          render :new
+        end  		      			
   end
 
   def top
@@ -46,7 +52,7 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-  	params.require(:order).permit(:customer_id, :ordered_date, :order_status, :ordered_zip_code, :ordered_address, :ordered_name, :total_price, :ordered_postage, :order_method
+  	params.require(:order).permit(:customer_id, :ordered_date, :order_status, :ordered_zip_code, :ordered_address, :ordered_name, :total_price, :ordered_postage, :order_method, order_details_atributes: [:customer_id, :product_id, :ordered_price, :ordered_item_count, :production_status])
   end
 
 end

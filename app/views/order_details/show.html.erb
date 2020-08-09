@@ -15,13 +15,11 @@
 	    <th>支払方法</th>
 	    <td><%= @order.order_method %></td>			
 	</tr>
-	<!--注文ステータスの設定が必要-->
 	<tr>
 	    <th>ステータス</th>
-	    <td></td>			
+	    <td><%= @order.order_status %></td>			
 	</tr>
 </table>
-    <!--配送料についてすり合わせが必要-->
 <h2>請求情報</h2>
 <table>
 	<tr>
@@ -29,10 +27,12 @@
 		<td></td>
 	</tr>
 	<tr>
+		<!--配送料は一律800円-->
 		<th>配送料</th>
-		<td></td>
+		<td>800</td>
 	</tr>
 	<tr>
+		<!--計算式の入力が必要-->
 		<th>ご請求額</th>
 		<td></td>
 	</tr>
@@ -46,13 +46,12 @@
 		<th>小計</th>
 	</tr>
 	<!--コントローラーに変数の設定が必要-->
-	<% @order_detail.each do |detail| %>
+	<% @order_details.each do |f| %>
 	<tr>
-		<th><%= detail.product.name%></th>
-		<th><%= detils.ordered_price %></th>
-		<th><%= detils.ordered_item_count %></th>
-	<!--小計はスキーマには設定がないため、定義が必要-->
-		<th><%= %></th>
+		<th><%= f.product.name %></th>
+		<th><%= f.ordered_price %></th>
+		<th><%= f.ordered_item_count %></th>
+		<th><%= f.ordered_price * f.ordered_item_count * 1.1 %></th>
 	</tr>
 </table>
 

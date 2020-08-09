@@ -9,12 +9,16 @@
     <!--前注文詳細の一覧-->
 	<% @orders.each do |f| %>
     <tr>
-    	<td><%= f.ordered_date %></td>
+    	<td>
+            <%= link_to admins_order_path(f) do %>
+                <%= f.ordered_date %>
+            <% end %>
+        </td>
     	<td><%= f.ordered_name %></td>
     	<!--orderに紐づいたorder_detailの注文個数を合計する処理が必要-->
-    	<td><%= %></td>
+    	<td><%= f.order_details.ordered_item_count.count %></td>
     	<!--注文ステータス-->
-    	<td><%= %></td>
+    	<td><%=@order.order_status %></td>
     </tr>
     <% end %>
 </table>
