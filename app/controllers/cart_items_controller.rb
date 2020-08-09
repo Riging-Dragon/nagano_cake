@@ -1,7 +1,6 @@
 class CartItemsController < ApplicationController
   def index
     @customer = Customer.find(current_customer[:id])
-    @total_price = calculate(current_customer)
   end
 
   def create
@@ -29,7 +28,7 @@ class CartItemsController < ApplicationController
 
   def destroy_all
       @customer = Customer.find(current_customer[:id])
-      if customer.cart_items.destroy_all
+      if @customer.cart_items.destroy_all
       flash[:notice] = "カート内の商品を全て削除しました。"
       redirect_to cart_items_path(@book)
     else

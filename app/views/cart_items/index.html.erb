@@ -10,7 +10,7 @@
 					<p class="success-message"><%= flash[:notice] %></p>
 				<% end %>
 				<div class="btn-box text-right">
-					<%= link_to "カートを空にする", cart_item_destroy_all_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class:"btn btn-danger" %>
+					<%= link_to "カートを空にする", cart_items_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class:"btn btn-danger" %>
 				</div>
 			</div>
 			<table>
@@ -48,13 +48,13 @@
 			<!-- 買い物を続けるbtn、合計金額、情報入力に進むbtn -->
 			<div class="cart-total-table row">
 				<div class="col-xs-8 return-shopping-btn-wrapper">
-					<%= link_to "買い物を続ける", homes_top_path, class:"btn btn-default" %>
+					<%= link_to "買い物を続ける", root_path, class:"btn btn-default" %>
 				</div>
 				<div class="col-xs-4">
 					<table class="table">
 						<tbody>
 							<th class="active">合計金額</th>
-							<td class="text-right"><%= @total_price %>円</td>
+							<td class="text-right"><%= @customer.cart_item_sum %>円</td>
 						</tbody>
 					</table>
 				</div>
