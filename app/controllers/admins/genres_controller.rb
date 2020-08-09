@@ -28,17 +28,17 @@ def update
       redirect_to admins_genres_path
     else
       render :edit
+    end
 end
 def genre_restore
     @genre = Genre.only_deleted.find(params[:id]).restore
     redirect_to admins_genres_path
-  end
+end
 
-  def destroy
+def destroy
     @genre = Genre.with_deleted.find(params[:id])
     @genre.destroy
     redirect_to admins_genres_path
-  end
 end
 private
   def genre_params
