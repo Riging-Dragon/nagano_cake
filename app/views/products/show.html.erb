@@ -8,7 +8,7 @@
          <th>ジャンル検索</th>
        </tr>
      </thead>
-    　 <tbody>
+     <tbody>
          <% @genres.each do |genre| %>
            <td>
               <%= link_to genre.genre_name, products_top_path(genre_id: genre.id) %>

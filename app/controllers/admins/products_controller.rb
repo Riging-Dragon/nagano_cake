@@ -1,7 +1,7 @@
 class Admins::ProductsController < ApplicationController
   before_action :authenticate_admin!
   def index
-
+    @admins_products = Product.page(params[:page]).reverse_order
   end
 
   def new
@@ -21,8 +21,7 @@ end
   def update
     @admins_product = Product.find(params[:id])
     if @admins_product.update(product_params)
-      redirect_to admins_product_path(@admins_product.id)
-      flash [:notice] ='You have updated user successfully.'
+      redirect_to admins_product_path(@admins_product.id), notice: 'You have updated user successfully.'
     else
       render :edit
   end

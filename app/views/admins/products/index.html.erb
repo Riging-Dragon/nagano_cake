@@ -13,13 +13,13 @@
 		<tbody>
 		<% @admins_products.each do |p| %>
 		<th>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td><%= p.id %></td>
+            <td><%= link_to p.name, admins_product_path(p.id) %></td>
+            <td><%= p.non_taxed_price %></td>
+            <td><%= p.genre.category %></td>
 		</th>
 		<% end %>
 	</tbody>
 </table>
+<%= paginate @admins_products, class: "paginate" %>
 </div>

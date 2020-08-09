@@ -1,6 +1,6 @@
 <div class="container">
  <h1>ジャンル一覧・追加</h1>
-    <%= form_for @genre, :url => { :controller => :genres, :action => :create } do |f| %>
+    <%= form_for @genre, :url => { :controller => :genres, :action => :create,method: :post } do |f| %>
       <% if @genre.errors.any? %>
         <div id="error_explanation" class="alert alert-danger">
           <h3><%= @genre.errors.count %>error prohibited this obj from being saved:</h3>
@@ -28,7 +28,7 @@
     <tbody>
       <% @genres.each do |p| %>
        <tr>
-        <td><%= p.genre_name %></td>
+        <td><%= p.category %></td>
         <td><%= link_to '編集する', edit_admins_genre_path(p.id), class: "btn btn-success" %></td>
           <% if p.deleted_at.nil? %>
             <td>有効</td>
