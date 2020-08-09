@@ -72,3 +72,6 @@ gem "refile-mini_magick"
 gem 'kaminari','~> 1.2.1'
 
 gem 'paranoia'
+
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'jquery-rails'
