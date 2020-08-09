@@ -17,7 +17,7 @@
 <!-- header デザイン分岐 -->
       <header class="header">
           <% if admin_signed_in? %>
-              <%= render 'layouts/admin_header' %>
+              <%= render 'layouts/admin_header', genres:Genre.all %>
           <% else %>
               <%= render 'layouts/customers_header' %>
           <% end %>
