@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     get 'orders/index'
     get 'orders/show'
   end
-  
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   #管理者側
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   	resources :genres, only: [:index, :edit, :create, :update]
   	resources :customers, only: [:index, :show, :edit, :update]
   	resources :orders , only: [:index, :show, :update]
+    resources :order_details, only: [:update]
   end
   #顧客側
   root 'homes#top'
