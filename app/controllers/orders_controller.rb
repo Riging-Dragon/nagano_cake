@@ -11,6 +11,8 @@ class OrdersController < ApplicationController
   end
 
   def create
+    if current_customer.cart_items.exists?
+
   		@order = Order.new(order_params)
   		@order.customer_id = current_customer.id
   		#顧客の配送先全てを@ods(ordered_deliveries)とする。
@@ -34,13 +36,26 @@ class OrdersController < ApplicationController
 	  			@order.ordered_zip_code = params[:order][:zip_code]
 	  			@order.ordered_address = params[:order][:delivery_address]
 	  			@order.ordered_name = params[:order][:delivery_name]
-	  		end
+	  	end
 
-	  		if @order.save
-          redirect_to confirm_path(@order)
-        else
-          render :new
-        end  		      			
+      @order.save
+
+        #cart_itemsの商品を一つずつorder_detailへとデータ移行
+      current_customer.cart_items.each do |cart_item|
+        order_detail = @order.order_details.build
+        order_detail.order_id = @order.id
+        order_detail.product_id = cart_item.product_id
+        order_detail.ordered_price =  cart_item.product.non_taxed_price
+        order_detail.ordered_item_count = cart_item.count 
+        order_detail.save
+        cart_item.destroy
+      end
+
+      render :top
+    else
+      redirect_to products_path
+      flash[:danger] = 'カートが空です。'
+    end  		      			
   end
 
   def top
