@@ -1,47 +1,52 @@
+<div class="container">
+   <div class="row">
 <h1>登録情報編集</h1>
-
+<table class="table-borderless">
 <!-- 登録情報編集フォーム-->
 <%= form_for(@customer, url:customers_path) do |f| %>
 	<!-- 名前　-->
 	<div class="form-group">
-		<p>名前</p>
-	    <label>(姓)</label>
-	    <%= f.text_field :last_name_kanji, class: "form-control" %>
+		<tr><th><p>名前</p></th>
+	    <th><label>(姓)</label>
+	    <%= f.text_field :last_name_kanji, class: "form-control" %></th>
+	    <th><label>(名)</label>
+	    <%= f.text_field :first_name_kanji, class: "form-control" %></th></tr>
 	</div>
-	    <label>(名)</label>
-	    <%= f.text_area :first_name_kanji, class: "form-control" %>
 	<!-- フリガナ　-->
 	<div class="form-group">
-		<p>フリガナ</p>
-	    <label>(セイ)</label>
-	    <%= f.text_area :last_name_kana, class: "form-control" %>
+		<tr><th><p>フリガナ</p></th>
+	    <th><label>(セイ)</label>
+	    <%= f.text_field :last_name_kana, class: "form-control" %></th>
+	    <th><label>(メイ)</label>
+	    <%= f.text_field :first_name_kana, class: "form-control" %></th></tr>
 	</div>
 	<!-- メールアドレス　-->
 	<div class="form-group">
-		<p>メールアドレス</p>
-	    <label>(メイ)</label>
-	    <%= f.text_field :first_name_kana, class: "form-control" %>
+	     <tr><th><p>メールアドレス</p></th>
+	     <th><%= f.text_field :email, class: "form-control" %></th></tr>
 	</div>
 	<!-- 郵便番号（ハイフンなし）-->
 	<div class="form-group">
-		<p>郵便番号（ハイフンなし）</p>
-	    <%= f.text_field :zip_code, class: "form-control" %>
+		<tr><th><p>郵便番号（ハイフンなし）</p></th>
+	    <th><%= f.text_field :zip_code, class: "form-control" %></th></tr>
 	</div>
 	<!-- 住所　-->
 	<div class="form-group">
-	    <p>住所</p>      
-	    <%= f.text_field :address, class: "form-control" %>
+	    <tr><th><p>住所</p></th>   
+	    <th><%= f.text_field :address, class: "form-control" %></th></tr>
 	</div>
 	<!-- 電話番号（ハイフンなし）-->
 	<div class="form-group">
-	    <p>電話番号（ハイフンなし）</p>       
-	    <%= f.text_field :phone_number, class: "form-control" %>
+	    <tr><th><p>電話番号（ハイフンなし）</p></th>  
+	    <th><%= f.text_field :phone_number, class: "form-control" %></th></tr>
 	</div>
 
 <!-- 編集内容保存ボタン　-->           
-<%= f.submit '編集内容を保存する', class: 'btn btn-primary btn-lg btn-block'%>
+<tr><th><%= f.submit '編集内容を保存する', class: 'btn btn-primary btn-lg btn-block'%></th>
 <% end %>
 
 <!-- 退会ボタン　-->
-<%= link_to '退会する', my_page_path %> 
-
+<th><%= link_to '退会する', my_page_path, class: "btn btn-danger mt-auto" %></th></tr>
+</table>
+</div>
+</div>
