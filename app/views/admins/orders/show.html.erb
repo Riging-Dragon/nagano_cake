@@ -37,7 +37,7 @@
 		<!--select-button-->
 		<%= form_with model: detail, url:admins_order_path, method: :patch, local: true do |f| %>
 		<td><%= f.select :production_status, f.production_status.keys.map {|k| [k, k]} %></td>
-		<td><%=link_to '更新', admins_order(f) %></td>
+		<td><%=link_to '更新', admins_order_detail_path(f) %></td>
 	</tr>
 	<% end %>
 </table>
