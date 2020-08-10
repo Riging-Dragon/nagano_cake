@@ -2,6 +2,7 @@
 	<div class="row">
 	<h1>商品詳細画面</h1>
 </div>
+<%= attachment_image_tag product, :image, format:'jpg'size: "30x30", fallback: "no_image.jpg" %>
 <div class="col">
 	<h3>商品名 <%=@admins_product.name %></h3>
 	<h3>商品説明 <%=@admins_product.description %></h3>
