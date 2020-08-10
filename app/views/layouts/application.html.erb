@@ -10,10 +10,10 @@
   </head>
 
   <body>
-    <header>
-      <div class="navbar-header">
+
+      <h1 class="navbar-header">
        <%= link_to "NaganoCake", root_path %>
-      </div>
+      </h1>
 <!-- header デザイン分岐 -->
       <header class="header">
           <% if admin_signed_in? %>
@@ -23,9 +23,9 @@
           <% end %>
       </header>
 
+
       <main>
         <%= yield %>
       </main>
-    </header>
   </body>
 </html>
