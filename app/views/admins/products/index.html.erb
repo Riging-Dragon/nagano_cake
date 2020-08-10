@@ -1,7 +1,6 @@
 <div class="container">
 	<h1>商品一覧画面</h1>
-	<div class="row">
-	<div class="col-md-3">
+	<%= link_to "+", new_admins_product_path, class: "btn btn-primary btn-circle pull-right" %>
 	<table class="table">
 		<thead>
 			<tr>
@@ -14,11 +13,11 @@
 		</thead>
 		<tbody>
 		<% @admins_products.each do |p| %>
-		<th>
+		<tr>
 		<td><%= p.id %></td>
          <td><%= link_to p.name, admins_product_path(p.id) %></td>
             <td><%= p.non_taxed_price %></td>
-            <td><%= p.genre.category %></td>
+            <td><%#=p.genre.category %></td>
             <td><%= p.is_capable %></td>
 		</th>
 		<% end %>
