@@ -9,11 +9,24 @@
 <%= form_tag(products_path,:method => 'get' ) do %>
         <%= text_field_tag :search %>
         <%= submit_tag 'Search', :name => nil %>
-        <% @genres.each do |genre| %>
+        <% @genre.each do |genre| %>
                 <td><%= link_to genre.category, products_path(genre_id:genre.id) %></td>
         <% end %>
         <tbody>
           <h2>商品一覧</h2>
+          <table class="table">
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th>税抜き価格</th>
+      </tr>
+    </thead>
+    <tbody>
+          <% @products.each do |product| %>
+            <td><%= link_to product.name, product_path(product.id)%></td>
+         <td><%= link_to product.non_taxed_price, product_path(product.id)%></td>
+
+
         </tbody>
             <% end %>
       </table>
@@ -21,10 +34,7 @@
     <div class="col-md-9">
         <div class="flex_test-box">
        <!--カート送信ボタンのコード -->
-        <% @products.each do |product| %>
             <div class="flex_test-item">
-             <%= link_to product_path(product.id) do %>
-             <% end %>
             </div>
         <% end %>
         </div>
