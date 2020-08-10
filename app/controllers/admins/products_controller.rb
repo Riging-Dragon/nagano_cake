@@ -33,9 +33,10 @@ end
   end
 
   def edit
-    @admins_products = Product.find(params[:id])
+    @admins_product = Product.find(params[:id])
+    p @admins_product
   end
   def product_params
-    params.require(:product).permit(:genre_id, :image, :name, :description, :non_taxed_price,:is_capable)
+    params.require(:product).permit(:genre_id, :image, :name, :description, :non_taxed_price,:is_capable,:category)
   end
 end
