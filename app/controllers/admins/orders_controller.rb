@@ -7,6 +7,7 @@ class Admins::OrdersController < ApplicationController
   	@order = Order.find_by(id: params[:id])
   	@customer = @order.customer
   	@order_details = @order.order_details
+    @total_price = @order_details.sum(&:subtotal_price)
   end
 
   def update
