@@ -4,31 +4,35 @@
 	<% if admin_signed_in? %>
 	  <ul class="nav navbar-nav navbar-right">	
 		<li>
-		  <%= link_to "商品一覧",admins_products_path %>
+		  <%= link_to "商品一覧",admins_products_path, class: "nav-link" %>
 		</li>
 		<li>
-		  <%= link_to '会員一覧', admins_customers_path %>
+		  <%= link_to '会員一覧', admins_customers_path, class: "nav-link" %>
 		</li>
 		<li>
-		  <%= link_to '注文履歴一覧', admins_orders_path %>
+		  <%= link_to '注文履歴一覧', admins_orders_path, class: "nav-link" %>
 		</li>
 		<li>
-		  <%= link_to 'ジャンル一覧', admins_genres_path %>
+		  <%= link_to 'ジャンル一覧', admins_genres_path, class: "nav-link" %>
 		</li>
 		<li>
-		  <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
+		  <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav-link" %>
 		</li>
 	  </ul>
+	</div>
 
-	    <form class="form-inline btn btn-outline-light btn-sm my-2 my-sm-0">
-	     <%= form_tag(products_path,:method => 'get' ) do %>
-	        <%= text_field_tag :search %>
-	        <%= submit_tag 'Search', :name => nil %>
-	        <% genres.each do |genre| %>
-	                <td><%= link_to genre.category, products_path(genre_id:genre.id) %></td>
-	                <% end %>
-	                <% end %>
-        </form>
-　　　<% end %>
-    </div>
+     <div class="row">
+     	<div class="collapse navbar-collapse">
+     		<div class="navbar-right">
+
+			    <%= form_tag(products_path,:method => 'get' ) do %>
+			        <%= text_field_tag :search %>
+			        <%= submit_tag 'Search', :name => nil %>
+
+               <% end %>
+		    </div>
+		</div>
+	 <% end %>
+   </div>
 </div>
+</nav>
