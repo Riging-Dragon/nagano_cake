@@ -6,11 +6,11 @@
 	<div class="order_method">
 	<%= f.label :支払方法 %>
 		<label>
-		    <%= f.radio_button :order_method, true, {checked: true} %>
+		    <%= f.radio_button :order_method, 0, checked: true %>
 		    クレジットカード
 		</label>
 		<label>
-		    <%= f.radio_button :order_method, true, {checked: true} %>
+		    <%= f.radio_button :order_method, 1 %>
 		    銀行振込
 		</label>
     </div>
@@ -33,7 +33,8 @@
 				<%= f.radio_button :add, 2 %>
 				登録済住所から選択
 			</label>
-			<%= f.collection_select :ordered_address, @ods, :id, Delivery.all.map{|m| [m.delivery_zip_code, m.delivery_address, m.delivery_name]} %>
+			<!--送信したいカラム名, ,表示したい配列, 渡したいデータの入ったカラム名,　表示の仕方（今回は複数カラム を表示したいため、Deliveryのクラスメソッドを指定）-->
+			<%= f.collection_select :ordered_address, @deliveries, :id, :full_address %>
 　　　　　</div>
 　　　　　<!--　新規住所　-->
         <div class="new address">
