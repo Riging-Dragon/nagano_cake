@@ -1,5 +1,7 @@
-<h1>注文履歴詳細</h1>
-
+<div class="body-height">
+<div class="container">
+    <div class="row">
+       <h1>注文履歴詳細</h1>
 <div>
 	<strong>購入者</strong>
 	<%= @customer.name %>
@@ -20,7 +22,7 @@
 	<%= f.select :order_status, Order.order_statuses.keys.map {|k| [k, k]} %>
 </div>
 
-<table>
+<table class="table">
 	<tr>
 		<th>商品名</th>
 		<th>単価（税込）</th>
@@ -45,3 +47,6 @@
 <div><strong>商品合計</strong><%= @total_price %></div>
 <div><strong>送料</strong>800</div>
 <div><strong>請求金額合計</strong><%= @order.total_sum + 800 %></div>
+</div>
+</div>
+</div>

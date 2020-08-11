@@ -10,7 +10,8 @@
   </head>
 
   <body>
-
+    <div class="header-image">
+      <nav class="navbar navbar-expand navbar-dark bg-dark navbar-fixed-top", style="background-color: #D7EEFF;">
       <h1 class="navbar-header">
        <%= link_to "NaganoCake", root_path %>
       </h1>
@@ -22,10 +23,16 @@
               <%= render 'layouts/customers_header' %>
           <% end %>
       </header>
-
-
+      </nav>
+    </div>
       <main>
         <%= yield %>
       </main>
+
+      <footer class="footer text-white", style="background-color: #D7EEFF;">
+        <div class="container text-center mt-3">
+          <p class="footer-text">© 2020 R.D inc.</p>
+        </div>
+      </footer>
   </body>
 </html>
