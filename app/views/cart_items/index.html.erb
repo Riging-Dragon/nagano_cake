@@ -30,7 +30,7 @@
 							<%= cart_item.product.name %>
 						</td>
 						<!--単価(税込)-->
-						<td><%= cart_item.product.non_taxed_price * 1.1 %>円</td>
+						<td><%= (cart_item.product.non_taxed_price * 1.1).round %>円</td>
 						<td class="text-right">
 							<%= form_for cart_item , html: {class:"form-inline"} do |f| %>
 								<div class="form-group">

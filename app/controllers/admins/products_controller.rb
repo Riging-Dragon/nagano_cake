@@ -6,11 +6,11 @@ class Admins::ProductsController < ApplicationController
   end
 
   def new
-    @admins_product = Product.new
+    @admins_product = Product.new#商品の新規登録ページの表示
   end
 
   def create
-    @admins_product = Product.new(product_params)
+    @admins_product = Product.new(product_params)#商品の新規登録
     if @admins_product.save
       redirect_to admins_product_path(@admins_product.id)
       flash[:notice] ='You have created product successfully.'
@@ -31,6 +31,8 @@ end
   def show
     @admins_product = Product.find(params[:id])
     @genre = Genre.find(@admins_product.genre_id)
+
+
   end
 
   def edit
