@@ -1,6 +1,5 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
       <p></p>
       <thead>
         <tr>
@@ -13,7 +12,8 @@
                 <td><%= link_to genre.category, products_path(genre_id:genre.id) %></td>
         <% end %>
         <tbody>
-          <h2>商品一覧</h2>
+          <div class="row">
+          <h1><strong>商品一覧<strong></h1>
           <table class="table">
     <thead>
       <tr>
@@ -24,7 +24,8 @@
     <tbody>
           <% @products.each do |product| %>
             <td><%= link_to product.name, product_path(product.id)%></td>
-         <td><%= link_to product.non_taxed_price, product_path(product.id)%></td>
+         <td><%= product.non_taxed_price * 1.1.round %>円</td>
+
 
 
         </tbody>
