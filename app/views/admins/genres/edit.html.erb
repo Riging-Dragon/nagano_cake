@@ -13,7 +13,7 @@
 			</div>
 		<% end %>
 		<h3><%= f.text_field :category %></h3>
-		<%= f.submit '更新', class: "btn btn-primary" %>
+		<%= f.submit '変更を保存する', class: "btn btn-primary" %>
 		<% if @genre.deleted_at.nil? %>
 			<%= link_to "無効にする", admins_genre_path, method: :delete, date: {confirm: '本当に削除しますか？'} ,class: "btn btn-denger" %>
 			<% else %>

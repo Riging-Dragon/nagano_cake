@@ -1,6 +1,6 @@
 <div class="body-height">
 <div class="container">
-	<h1>商品一覧画面</h1>
+	<h1><strong>商品一覧画面<strong></h1>
 	<%= link_to "+", new_admins_product_path, class: "btn btn-primary btn-circle pull-right" %>
 	<table class="table">
 		<thead>
@@ -16,15 +16,15 @@
 		<% @admins_products.each do |p| %>
 		<tr>
 		<td><%= p.id %></td>
-         <td><%= link_to p.name, admins_product_path(p.id) %></td>
-            <td><%= p.non_taxed_price %></td>
-            <td><%#=p.genre.category %></td>
+         <td><%= link_to p.name,admins_product_path(p.id) %></td>
+            <td><%= p.non_taxed_price %>円</td>
+            <td><%=p.genre.category %></td>
             <td><%= p.is_capable %></td>
         </tr>
 		</th>
 		<% end %>
 	</tbody>
 </table>
-<%= paginate @admins_products, class: "paginate" %>
+<%#= paginate @admins_products, class: "paginate" %>
 </div>
 </div>

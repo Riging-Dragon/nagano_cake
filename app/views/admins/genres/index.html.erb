@@ -1,6 +1,6 @@
 <div class="body-height">
 <div class="container">
- <h1>ジャンル一覧・追加</h1>
+ <h1><strong>ジャンル一覧・追加</h1>
     <%= form_for @genre, :url => { :controller => :genres, :action => :create,method: :post } do |f| %>
       <% if @genre.errors.any? %>
         <div id="error_explanation" class="alert alert-danger">

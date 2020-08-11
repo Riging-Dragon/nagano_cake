@@ -2,6 +2,7 @@ class Admins::ProductsController < ApplicationController
   before_action :authenticate_admin!
   def index
     @admins_products = Product.page(params[:page]).reverse_order
+    @genres = Genre.all
   end
 
   def new
@@ -36,6 +37,7 @@ end
     @admins_product = Product.find(params[:id])
     p @admins_product
   end
+
   def product_params
     params.require(:product).permit(:genre_id, :image, :name, :description, :non_taxed_price,:is_capable,:category)
   end

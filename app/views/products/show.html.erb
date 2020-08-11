@@ -2,7 +2,7 @@
 <div class="container">
  <!-- 左側ジャンル検索画面 -->
  <div class="row">
-  <div class="col-md-3">
+
     <table class="table table-bordered">
     <thead>
       <tr>
@@ -33,11 +33,9 @@
    <%= f.select :count,(1..10).to_a, {}, class: "form-control" %>
   <% end %><!-- ログインしていたらカートボタン表示 -->
      <%#= form_for( CartItems.new(product_id: @product_id)) do|f|  %>
-      
         <%#= f.select :product_number, [*1..100] ,class:"form-control" %>
         <%#= f.hidden_field :product_id %>
         <%#= f.submit "カートに入れる", class: "btn btn-primary" %>
-      
 <%# end %>
 <% end %>
     </ul>
