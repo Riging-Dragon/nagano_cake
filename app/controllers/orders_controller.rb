@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_customer
+  before_action :authenticate_customer!
   #(customer_id: @customer.id)は必要？
   def new
   	@order = Order.new
@@ -58,14 +59,14 @@ class OrdersController < ApplicationController
     @order.order_details.each do |de|
       @total_price += de.subtotal_price
     end
-
+    @order.total_price = @total_price
     #@total_price = @order.order_details
-    @ordered_postage = 800
+    @order.ordered_postage = 800
 
     @customer.cart_items.delete_all
-    
+   
     if @order.save
-      render :top
+       render :top
     else
       redirect_to products_path
       flash[:danger] = 'カートが空です。'
