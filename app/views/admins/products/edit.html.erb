@@ -2,14 +2,16 @@
 <div class="container">
 	<h1>商品編集画面</h1>
 	<div class="row">
+		<%= attachment_image_tag @admins_product, :image, format: 'jpg' ,size: "100x100", fallback: "no_image.jpg" %>
 		<%= form_for @admins_product, :url => {controller: :products, action: :update} do |f| %>
 		<div class="form-group">
 			<%= f.label "商品名" %><%= f.text_field :name, class: "form-control" %>
 			<%= f.label "商品説明" %><%= f.text_area :description , class: "form-control" %>
 			<%= f.label "ジャンル" %><%= f.collection_select :genre_id, Genre.all, :id, :category, class: "form-control" %>
 			<%= f.label "税抜価格" %><%= f.number_field :non_taxed_price, class: "form-horizontal" %>円
-			<%= f.select :is_capable, [["販売停止中",0],["販売中",1]], include_blank: "--選択してください--" %></td>
+			<%= f.select :is_capable, [["販売停止中","stopped"],["販売中","sales"]], include_blank: "--選択してください--" %>
 			<%= f.submit '変更を保存', class: "btn btn-primary pull-right" %>
+
 			<% end %>
 		</div>
 	</div>
