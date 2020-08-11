@@ -4,6 +4,7 @@ class Genre < ApplicationRecord
 	acts_as_paranoid
 
   validates :category, presence: true
+  #下記の記述は曖昧検索機能の実装。ここ割と難しかった。
   def self.search(search)
       if search
         where(['category LIKE ?', "%#{search}%"])
