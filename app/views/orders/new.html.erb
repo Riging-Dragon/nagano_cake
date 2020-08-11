@@ -1,17 +1,17 @@
 <h1>注文情報入力</h1>
 
-<%= form_with(model: @order, local: true, url: {action: 'confirm'}) do |f| %>
+<%= form_with(model: @order, local: true, url: {action: 'confirm'}, method: :get ) do |f| %>
     
 	<!-- 支払い方法　-->
 	<div class="order_method">
 	<%= f.label :支払方法 %>
 		<label>
-		    <%= f.radio_button :order_method, 0, checked: true %>
-		    クレジットカード
+		    <%= f.radio_button :order_method, :クレジットカード, checked: true %>
+		   
 		</label>
 		<label>
-		    <%= f.radio_button :order_method, 1 %>
-		    銀行振込
+		    <%= f.radio_button :order_method, :銀行振込 %>
+		    
 		</label>
     </div>
 	<!--　お届け先　-->
@@ -20,7 +20,7 @@
 	    <!--　顧客の住所　-->
 	    <div class="address">
 			<label>
-				<%= f.radio_button :add, 1, checked: true %>
+				<%= radio_button_tag :add, 1, checked: true %>
 				ご自身の住所<br>
 				<%= @customer.zip_code %>
 				<%= @customer.address %><br>
@@ -30,32 +30,33 @@
 　　　　　<!--　登録済住所　-->
         <div class="delivery_address">
 			<label>
-				<%= f.radio_button :add, 2 %>
+				<%= radio_button_tag :add, 2 %>
 				登録済住所から選択
 			</label>
 			<!--送信したいカラム名, ,表示したい配列, 渡したいデータの入ったカラム名,　表示の仕方（今回は複数カラム を表示したいため、Deliveryのクラスメソッドを指定）-->
-			<%= f.collection_select :ordered_address, @deliveries, :id, :full_address %>
+			<%=select_tag :address, options_from_collection_for_select(@deliveries, :id, :full_address)  %>
+			
 　　　　　</div>
 　　　　　<!--　新規住所　-->
         <div class="new address">
 			<label>
-				<%= f.radio_button :add, 3 %>
+				<%= radio_button_tag :add, 3 %>
 				新しいお届け先
 			</label>
-			<%= f.fields_for :new_address do |na| %>
+			<!-- f.fields_for -->
 				<label>
 					郵便番号
-					<%= na.text_field :zip_code, class: 'form-control' %>
+					<%= f.text_field :ordered_zip_code, class: 'form-control' %>
 				</label>
 				<label>
 					住所
-					<%= na.text_field :delivery_address, class: 'form-control' %>
+					<%= f.text_field :ordered_address, class: 'form-control' %>
 				</label>
 				<label>
 					宛名
-					<%= na.text_field :delivery_name, class: 'form-control' %>
+					<%= f.text_field :ordered_name, class: 'form-control' %>
 				</label>
-		    <% end %>
+		   
 		</div>
 	</div>
 
