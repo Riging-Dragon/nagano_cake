@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   #(customer_id: @customer.id)は必要？
   def new
   	@order = Order.new
-    @ods = @customer.deliveries.all
+    @deliveries = @customer.deliveries.all
   end
 
   def confirm
