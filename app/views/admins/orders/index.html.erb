@@ -10,7 +10,7 @@
 	<% @orders.each do |f| %>
     <tr>
     	<td>
-            <% link_to admins_order_path(f) do %>
+            <%= link_to admins_order_path(f) do %>
                 <%= f.ordered_date %>
             <% end %>
         </td>
@@ -18,7 +18,7 @@
     	<!--orderに紐づいたorder_detailの注文個数を合計する処理が必要-->
     	<td><%= f.order_details.ordered_item_count.count %></td>
     	<!--注文ステータス-->
-    	<td><%=@order.order_status %></td>
+    	<td><%= @order.order_status %></td>
     </tr>
     <% end %>
 </table>

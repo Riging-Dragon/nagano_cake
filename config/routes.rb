@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'orders' => 'orders#top', as: 'orders'
   #アプリケーション詳細設計に追加して、注文確認viewを追加
   get 'orders/confirm' => 'orders#confirm', as: 'confirm'
+  #post 'orders/confirm' => 'orders#confirm'
   get 'customers/resign_page' => 'customers#resign_page', as: 'resign_page'
   #customers/registrations#editで/customers/edit(.:format)を使用しているため、URLを個別指定。
   get 'customers/my_page' => 'customers#edit', as: 'my_page'
