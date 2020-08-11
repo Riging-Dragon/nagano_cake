@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2020_08_11_063608) do
     t.integer "product_id"
     t.integer "ordered_price"
     t.integer "ordered_item_count"
-    t.integer "production_status", default: 0
+    t.integer "production_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -81,13 +81,13 @@ ActiveRecord::Schema.define(version: 2020_08_11_063608) do
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id"
     t.datetime "ordered_date"
-    t.integer "order_status", default: 0
+    t.integer "order_status"
     t.integer "ordered_zip_code"
     t.string "ordered_address"
     t.string "ordered_name"
     t.integer "total_price"
     t.integer "ordered_postage"
-    t.integer "order_method", default: 0
+    t.integer "order_method"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
