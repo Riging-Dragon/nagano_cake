@@ -2,12 +2,10 @@
 <div class="container">
 	<div class="row">
  <% if customer_signed_in? %>
-<div class="body-height">
   <span class="u h7 text-white strong">
     ようこそ、<%= current_customer.last_name_kanji %>
     <%= current_customer.first_name_kanji %>さん！
   </span>
-</div>
     <ul class="nav navbar-nav navbar-right">
       <li>
 	    <%= link_to "マイページ", customers_path(current_customer),class: "nav-link btn btn-primary" %>
