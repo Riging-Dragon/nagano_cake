@@ -4,7 +4,7 @@
        <h1>注文履歴詳細</h1>
 <div>
 	<strong>購入者</strong>
-	<%= @customer.name %>
+	<%= link_to "#{@customer.last_name_kanji}  #{@customer.first_name_kanji}", admins_customer_path(@customer)  %>
 </div>
 <div>
 	<strong>配送先</strong>
@@ -20,6 +20,8 @@
 	<strong>注文ステータス</strong>
 	<%= form_with model: @order, url: admins_order_path ,method: :patch, local: true do |f| %>
 	<%= f.select :order_status, Order.order_statuses.keys.map {|k| [k, k]} %>
+	<%= f.submit '更新' %>
+	<% end %>
 </div>
 
 <table class="table">
@@ -37,16 +39,18 @@
 		<td><%= detail.ordered_item_count %></td>
 		<td><%= detail.subtotal_price %></td>
 		<!--select-button-->
-		<%= form_with model: detail, url:admins_order_path, method: :patch, local: true do |f| %>
-		<td><%= f.select :production_status, f.production_status.keys.map {|k| [k, k]} %></td>
-		<td><%=link_to '更新', admins_order_detail_path(f) %></td>
+		<%= form_with model: detail, url: admins_order_detail_path(detail), method: :patch, local: true do |f| %>
+		<td><%= f.select :production_status, OrderDetail.production_statuses.keys.map {|k| [k, k]} %>
+			<%= f.submit '更新' %></td>
+		    <% end %>
+		</td>
 	</tr>
 	<% end %>
 </table>
 
 <div><strong>商品合計</strong><%= @total_price %></div>
 <div><strong>送料</strong>800</div>
-<div><strong>請求金額合計</strong><%= @order.total_sum + 800 %></div>
+<div><strong>請求金額合計</strong><%= @order.total_price + 800 %></div>
 </div>
 </div>
 </div>
