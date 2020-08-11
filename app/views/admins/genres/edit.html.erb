@@ -1,3 +1,4 @@
+<div class="body-height">
 <div class="container">
 	<h1>ジャンル編集画面</h1>
 	<%= form_for @genre, :url => { :controller => :genres, :action => :update } do |f| %>
@@ -19,4 +20,5 @@
 			<%= link_to "有効にする", genre_restore_admins_genre_path(@genre), method: :patch, class:"btn btn-primary" %>
 		<% end %>
 	<% end %>
+</div>
 </div>

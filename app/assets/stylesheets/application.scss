@@ -16,10 +16,23 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.body-height{
+	margin-top:150px;
+}
 
+header{
+	
+}
 
+.header-image{
+	
+}
 .navbar-header{
 	margin-left:300px;
+	background-image: url("cake-header.jpg");
+	width:300px;
+	height:50px;
+	background-size:cover;
 }
 
 .nav-link{
@@ -31,3 +44,22 @@
 	margin-left:10px;
 }
 
+// スライドデザイン
+.carousel{
+  height: 600px;
+  overflow: hidden;
+}
+
+.carousel-inner{
+	margin-top:30px;
+}
+
+.skippr-next{
+	margin-right:1000px;
+}
+
+.footer-text{
+	color:black;
+	font-size:15px;
+	margin-top:10px;
+}
