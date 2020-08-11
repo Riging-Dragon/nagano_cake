@@ -19,15 +19,19 @@
 					<%= order.ordered_date %>
 				</td>
 				<td>
-					<%= order.ordered_zip_cod %><br>
+					<%= order.ordered_zip_code %><br>
 					<%= order.ordered_address %><br>
 					<%= order.ordered_name %>
 				</td>
-				<td><%= order.products.name %></td>
+				<td>
+					<% order.order_details.each do |order_detail| %>
+					  <%= order_detail.product.name %>
+					<% end %>
+				</td>
 				<!--total_priceとordered_postageを定義する必要あり-->
 				<td><%= order.total_price %></td>
-				<td><%= order.production_status %></td>	
-				<td><%= link_to"表示する", order_detail_path, class: 'btn btn-danger' %></td>
+				<td><%= order.order_status %></td>	
+				<td><%= link_to"表示する", order_detail_path(order), class: 'btn btn-danger' %></td>
 			</tr>
 			<% end %>
 		</table>
