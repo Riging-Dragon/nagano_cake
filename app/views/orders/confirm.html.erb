@@ -14,7 +14,7 @@
 	<% @customer.cart_items.each do |cart_item| %>
 	<tr>
 		<td><%= cart_item.product.name %></td>
-		<td><%= cart_item.product.non_taxed_price * 1.1 %></td>
+		<td><%= (cart_item.product.non_taxed_price * 1.1).round %></td>
 		<td><%= cart_item.count %></td>
 		<td><%= (cart_item.product.non_taxed_price * 1.1).round * cart_item.count %></tr>
 	<% end %>
